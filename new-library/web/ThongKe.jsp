@@ -24,7 +24,7 @@
             <c:set var="param.clear" value="false"/>
         </c:if>
         <div class="header">
-            <a class="a-btn header-btn" href="NhanVienHome.jsp">Trang Chủ</a>
+            <a class="a-btn header-btn" href="TaiLieuController?action=home">Trang Chủ</a>
             <a class="a-btn header-btn" href="DangNhapController?action=logout">Đăng Xuất</a>
         </div>
         <div class="menu">

@@ -444,4 +444,22 @@ input[type='number'] {
     color: rgb(255, 255, 255);
 }
 
+.content-frame {
+    width: 90%;
+    margin: auto;
+    background: white;
+    box-shadow: 10px 10px 5px rgb(166, 166, 166);
+    margin-top: 140px;
+    padding-top: 10px;
+}
+
+.content-frame h1 {
+    color: rgb(140, 140, 140);
+    margin-left:10px;
+}
+
+.header-left {
+    display: flex;
+}
+
 

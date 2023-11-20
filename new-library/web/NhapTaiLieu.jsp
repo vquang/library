@@ -23,7 +23,7 @@
             <c:set var="param.clear" value="false"/>
         </c:if>
         <div class="header">
-            <a class="a-btn header-btn" href="NhanVienHome.jsp">Trang Chủ</a>
+            <a class="a-btn header-btn" href="TaiLieuController?action=home">Trang Chủ</a>
             <a class="a-btn header-btn" href="DangNhapController?action=logout">Đăng Xuất</a>
         </div>
         <div class="menu">
@@ -315,14 +315,14 @@
             }
         </script>
 
-        <c:if test="${not empty taiLieu}">
+        <c:if test="${not empty taiLieuMoi}">
             <script>
                 // Lấy đối tượng TaiLieu từ request attribute
                 console.log("hehe");
                 let taiLieuMoi = {
-                    id: '${taiLieu.id}',
-                    ten: '${taiLieu.ten}',
-                    tacGia: '${taiLieu.tacGia}',
+                    id: '${taiLieuMoi.id}',
+                    ten: '${taiLieuMoi.ten}',
+                    tacGia: '${taiLieuMoi.tacGia}',
                     soLuong: 0,
                     giaNhap: 0
                 };

@@ -16,34 +16,43 @@
     </head>
     <body>
         <div class="header">
-            <a class="a-btn header-btn header-btn-active" href="TaiLieuBanDocController?action=view">Trang Chủ</a>
+            <div class="header-left">
+                <a class="a-btn header-btn header-btn-active" href="TaiLieuBanDocController?action=home">Trang Chủ</a>
+                <a class="a-btn header-btn" href="TaiLieuBanDocController?action=view">Kho Tài Liệu</a>
+            </div>
             <a class="a-btn header-btn" href="/new-library/DangNhapController?action=logout">Đăng Xuất</a>
         </div>
         <div class="container" style="margin-top:50px;">
-            <div class="search-frame center">
-                <div class="search-item" style="width:40%; border:none">
-                    <form action="TaiLieuBanDocController" method="post">
-                        <div class="search-group">
-                            <h3 style="margin-right:50px;">Tìm Tài Liệu:</h3>
-                            <input type="hidden" name="action" value="search" />
-                            <input class="search-inp" type="text" placeholder="search..." name="search" />
-                            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
+            
             <c:choose>
-                <c:when test="${not empty listTaiLieus}">
-                    <div class="content">
-                        <c:forEach var="taiLieu" items="${listTaiLieus}">
-                            <a class="content-item" href="TaiLieuBanDocController?action=show&id=${taiLieu.id}">
-                                <img class="content-item-image" src="/new-library/${taiLieu.anhBia}" />
-                                <span class="content-item-text" style="color:black;font-size: 20px;">${taiLieu.ten}</span>
-                                <span class="content-item-text" >Tác giả: ${taiLieu.tacGia}</span>
-                                <span class="content-item-text" >Số lượng: ${taiLieu.soLuong}</span>
-                            </a>
-                        </c:forEach>
+                <c:when test="${not empty listTKTaiLieus}">
+                    <div class="content-frame" style="margin-top:100px">
+                        <h1>Top 5 Phổ Biến</h1>
+                        <div class="content" style="width:100%;">
+                            <c:forEach var="tkTaiLieu" items="${listTKTaiLieus}" varStatus="loop">
+                                <c:if test="${loop.index < 5}">
+                                    <a class="content-item" href="TaiLieuBanDocController?action=show&id=${tkTaiLieu.taiLieu.id}">
+                                        <img class="content-item-image" src="/new-library/${tkTaiLieu.taiLieu.anhBia}" />
+                                        <span class="content-item-text" style="color:black;font-size: 20px;">${tkTaiLieu.taiLieu.ten}</span>
+                                        <span class="content-item-text" >Tác giả: ${tkTaiLieu.taiLieu.tacGia}</span>
+                                        <span class="content-item-text" >Số lượng: ${tkTaiLieu.taiLieu.soLuong}</span>
+                                    </a>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div class="content-frame" style="margin-top:50px">
+                        <h1>Kho Tài Liệu</h1>
+                        <div class="content" style="width:100%;">
+                            <c:forEach var="tkTaiLieu" items="${listTKTaiLieus}">
+                                <a class="content-item" href="TaiLieuBanDocController?action=show&id=${tkTaiLieu.taiLieu.id}">
+                                    <img class="content-item-image" src="/new-library/${tkTaiLieu.taiLieu.anhBia}" />
+                                    <span class="content-item-text" style="color:black;font-size: 20px;">${tkTaiLieu.taiLieu.ten}</span>
+                                    <span class="content-item-text" >Tác giả: ${tkTaiLieu.taiLieu.tacGia}</span>
+                                    <span class="content-item-text" >Số lượng: ${tkTaiLieu.taiLieu.soLuong}</span>
+                                </a>
+                            </c:forEach>
+                        </div>
                     </div>
                 </c:when>
             </c:choose>

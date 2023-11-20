@@ -5,7 +5,9 @@
 package controller.bandoc;
 
 import dao.TaiLieuDAO;
+import dao.ThongKeDAO;
 import entity.TaiLieu;
+import entity.ThongKeTaiLieu;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,6 +22,7 @@ import java.util.List;
 public class TaiLieuBanDocController extends HttpServlet {
 
     private TaiLieuDAO taiLieuDAO = new TaiLieuDAO();
+    private ThongKeDAO thongKeDAO = new ThongKeDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,15 +37,19 @@ public class TaiLieuBanDocController extends HttpServlet {
         if (action == null || action.equals("view")) {
             List<TaiLieu> list = taiLieuDAO.getList();
             request.setAttribute("listTaiLieus", list);
-            request.getRequestDispatcher("/bandoc/BanDocHome.jsp").forward(request, response);
+            request.getRequestDispatcher("/bandoc/KhoTaiLieuBD.jsp").forward(request, response);
         } else if (action.equals("show")) {
             TaiLieu taiLieu = taiLieuDAO.getById(Integer.parseInt(request.getParameter("id")));
             request.getSession().setAttribute("taiLieu", taiLieu);
-            request.getRequestDispatcher("/bandoc/XemTaiLieu.jsp").forward(request, response);
+            request.getRequestDispatcher("/bandoc/XemTaiLieuBD.jsp").forward(request, response);
         } else if (action.equals("search")) {
             String search = (String) request.getParameter("search");
             List<TaiLieu> list = taiLieuDAO.search(search);
             request.setAttribute("listTaiLieus", list);
+            request.getRequestDispatcher("/bandoc/KhoTaiLieuBD.jsp").forward(request, response);
+        } else if(action.equals("home")) {
+            List<ThongKeTaiLieu> list = thongKeDAO.getListTKTaiLieus("desc");
+            request.setAttribute("listTKTaiLieus", list);
             request.getRequestDispatcher("/bandoc/BanDocHome.jsp").forward(request, response);
         }
     }

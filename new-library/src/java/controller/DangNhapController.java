@@ -48,9 +48,9 @@ public class DangNhapController extends HttpServlet {
                 request.getSession().setAttribute("thanhVien", list.get(0));
                 request.setAttribute("error", false);
                 if (vaiTro == VaiTro.NHANVIEN.getValue()) {
-                    response.sendRedirect("/new-library/NhanVienHome.jsp");
+                    response.sendRedirect("/new-library/TaiLieuController?action=home");
                 } else {
-                    response.sendRedirect("/new-library/bandoc/BanDocHome.jsp");
+                    response.sendRedirect("/new-library/bandoc/TaiLieuBanDocController?action=home");
                 }
             }
         } else if (action.equals("logout")) {
